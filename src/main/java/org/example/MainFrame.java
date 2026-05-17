@@ -7,7 +7,7 @@ public class MainFrame extends JFrame {
     private final CanvasPanel canvas;
 
     public MainFrame() {
-        setTitle("Піксельна вишивка - Автор: Ваше Ім'я");
+        setTitle("Піксельна вишивка - Автор: Aнгеліна Білик");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout(5, 5));
 
