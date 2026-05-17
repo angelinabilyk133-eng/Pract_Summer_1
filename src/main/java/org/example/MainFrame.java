@@ -24,6 +24,22 @@ public class MainFrame extends JFrame {
         JButton btnLoad = new JButton("Відкрити PNG");
         btnLoad.addActionListener(e -> FileManager.loadFromPNG(this, model, canvas));
 
+        JButton btnClear = new JButton("Очистити полотно");
+        btnClear.addActionListener(e -> {
+            int confirm = JOptionPane.showConfirmDialog(
+                    this,
+                    "Ви впевнені, що хочете очистити все полотно? Всі незбережені зміни будуть втрачені.",
+                    "Підтвердження очистки",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                model.clearGrid();
+                canvas.repaint();
+            }
+        });
+
         JCheckBox symHor = new JCheckBox("Горизонтальна симетрія");
         symHor.addActionListener(e -> model.setSymHorizontal(symHor.isSelected()));
 
@@ -32,6 +48,7 @@ public class MainFrame extends JFrame {
 
         controlPanel.add(btnSave);
         controlPanel.add(btnLoad);
+        controlPanel.add(btnClear);
         controlPanel.add(new JSeparator(SwingConstants.VERTICAL));
         controlPanel.add(symHor);
         controlPanel.add(symVer);
