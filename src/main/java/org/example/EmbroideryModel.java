@@ -8,8 +8,7 @@ public class EmbroideryModel {
     private final Color[][] grid;
 
     private Color currentColor = Color.RED;
-    private final Color backgroundColor = new Color(245, 245, 230);
-
+    private final Color backgroundColor = new Color(253, 245, 230);
     private boolean symHorizontal = false;
     private boolean symVertical = false;
 

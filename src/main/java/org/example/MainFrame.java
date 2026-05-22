@@ -15,8 +15,21 @@ public class MainFrame extends JFrame {
         canvas = new CanvasPanel(model);
         PalettePanel palettePanel = new PalettePanel(model);
 
+        Color topPanelColor = new Color(235, 225, 205);
+
         JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.setBackground(topPanelColor);
+
         JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        controlPanel.setBackground(topPanelColor);
+
+        JCheckBox symHor = new JCheckBox("Горизонтальна симетрія");
+        symHor.setBackground(topPanelColor);
+        symHor.addActionListener(e -> model.setSymHorizontal(symHor.isSelected()));
+
+        JCheckBox symVer = new JCheckBox("Вертикальна симетрія");
+        symVer.setBackground(topPanelColor);
+        symVer.addActionListener(e -> model.setSymVertical(symVer.isSelected()));
 
         JButton btnSave = new JButton("Зберегти PNG");
         btnSave.addActionListener(e -> FileManager.saveToPNG(this, model, canvas));
@@ -40,12 +53,6 @@ public class MainFrame extends JFrame {
             }
         });
 
-        JCheckBox symHor = new JCheckBox("Горизонтальна симетрія");
-        symHor.addActionListener(e -> model.setSymHorizontal(symHor.isSelected()));
-
-        JCheckBox symVer = new JCheckBox("Вертикальна симетрія");
-        symVer.addActionListener(e -> model.setSymVertical(symVer.isSelected()));
-
         controlPanel.add(btnSave);
         controlPanel.add(btnLoad);
         controlPanel.add(btnClear);
@@ -57,7 +64,13 @@ public class MainFrame extends JFrame {
         topPanel.add(palettePanel, BorderLayout.SOUTH);
 
         add(topPanel, BorderLayout.NORTH);
-        add(new JScrollPane(canvas), BorderLayout.CENTER);
+        JPanel canvasContainer = new JPanel(new GridBagLayout());
+        canvasContainer.setBackground(new Color(253, 245, 230));
+        canvasContainer.add(canvas);
+
+        JScrollPane scrollPane = new JScrollPane(canvasContainer);
+        scrollPane.setBorder(null);
+        add(scrollPane, BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);

@@ -11,17 +11,23 @@ public class PalettePanel extends JPanel {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createTitledBorder("Палітра кольорів"));
 
+        Color topPanelColor = new Color(235, 225, 205);
+        setBackground(topPanelColor);
+
         colorPreview = new JPanel();
         colorPreview.setPreferredSize(new Dimension(25, 25));
         colorPreview.setBackground(model.getCurrentColor());
         colorPreview.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         JPanel previewContainer = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        previewContainer.setBackground(topPanelColor);
         previewContainer.add(new JLabel("Поточний колір: "));
         previewContainer.add(colorPreview);
         add(previewContainer, BorderLayout.EAST);
 
         JPanel gridColors = new JPanel(new GridLayout(2, 11, 4, 4));
+        gridColors.setBackground(topPanelColor);
+
         Color[] colors = {
                 new Color(180, 0, 0), new Color(220, 20, 60), new Color(255, 69, 0), new Color(139, 0, 0), new Color(255, 105, 180),
                 Color.BLACK, new Color(40, 40, 40), new Color(90, 90, 90), new Color(139, 69, 19), new Color(160, 160, 160),
